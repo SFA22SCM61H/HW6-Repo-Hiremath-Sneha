@@ -1,0 +1,10 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/hw5spmhiremathsneha/flaskservice', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/hw5spmhiremathsneha/flaskservice']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'flask-service', '--image', 'gcr.io/hw5spmhiremathsneha_ID/flaskservice', '--region', 'us-central']
+images:
+- gcr.io/hw5spmhiremathsneha_ID/flaskservice
