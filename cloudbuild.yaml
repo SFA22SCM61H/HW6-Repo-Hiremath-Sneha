@@ -5,6 +5,6 @@ steps:
   args: ['push', 'gcr.io/hw5spmhiremathsneha/flaskservice']
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'flask-service', '--image', 'gcr.io/hw5spmhiremathsneha_ID/flaskservice', '--region', 'us-central']
+  args: ['run', 'deploy', 'flask-service', '--image', 'gcr.io/hw5spmhiremathsneha/flaskservice', '--region', 'us-central']
 images:
-- gcr.io/hw5spmhiremathsneha_ID/flaskservice
+- gcr.io/hw5spmhiremathsneha/flaskservice
