@@ -1,10 +1,13 @@
 steps:
+# Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/hw5spmhiremathsneha/flaskservice', '.']
+  args: ['build', '-t', 'gcr.io/$GCP-PROJECTID/$GCP-PROJECTNAME', '.']
+# Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/hw5spmhiremathsneha/flaskservice']
+  args: ['push', 'gcr.io/$GCP-PROJECTID/$GCP-PROJECTNAME']
+# Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'flask-service', '--image', 'gcr.io/hw5spmhiremathsneha/flaskservice', '--region', 'us-central1']
+  args: ['run', 'deploy', '$GCP-PROJECTNAME', '--image', 'gcr.io/$GCP-PROJECTID/$GCP-PROJECTNAME', '--region', 'us-central1', '--platform', 'managed','--port','80']
 images:
-- gcr.io/hw5spmhiremathsneha/flaskservice
+- gcr.io/$GCP-PROJECTID/$GCP-PROJECTNAME
